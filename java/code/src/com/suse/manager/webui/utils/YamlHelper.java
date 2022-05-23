@@ -50,4 +50,18 @@ public enum YamlHelper {
         Yaml yaml = new Yaml(options);
         return yaml.dump(object);
     }
+
+    /**
+     * Dump a given object into Yaml with plain scalar types rather than double quoted.
+     *
+     * @param object the object to dump
+     * @return the YAML representation of the given object
+     */
+    public String dumpPlain(Object object) {
+        options.setDefaultScalarStyle(DumperOptions.ScalarStyle.PLAIN);
+        String result = dump(object);
+        options.setDefaultScalarStyle(DumperOptions.ScalarStyle.DOUBLE_QUOTED);
+        return result;
+    }
 }
+
